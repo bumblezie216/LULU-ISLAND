@@ -146,6 +146,11 @@ textarea:focus-visible,button:focus-visible{outline:3px solid var(--teal);outlin
 .m .ph{width:min(52vw,220px)}
 .pair.rw{animation:none;width:min(94vw,440px)}
 .rw .fz{flex:1}
+.tw{transform-box:fill-box;transform-origin:center;animation:tw 1.8s ease-in-out infinite alternate}
+@keyframes tw{from{opacity:.2;transform:scale(.5)}to{opacity:1;transform:scale(1)}}
+.av2{transform-origin:50% 100%;animation:bob 3.4s ease-in-out infinite alternate}
+@keyframes bob{to{transform:translateY(-3px) rotate(1.2deg)}}
+@media (prefers-reduced-motion:reduce){.av2{animation:none}}
 </style>
 </head>
 <body>
@@ -268,7 +273,7 @@ function lulu(){
   "<g class='bubble'><rect x='198' y='64' width='150' height='58' rx='18' fill='#fff'/><path d='M222 120L214 142L244 120Z' fill='#fff'/><text x='212' y='88' font-size='14' font-weight='800' font-family='Nunito,sans-serif' fill='#2a0f3d'>Hey you… 😉</text><text x='212' y='108' font-size='13' font-weight='800' font-family='Nunito,sans-serif' fill='#2a0f3d'>ready to couple up?</text></g></svg>";
 }
 function intro(){
-  show("<div class='intro'><h1>Lulu Island</h1>"+lulu()+"<p class='tag sub'>Short episodes from the villa. Sound on, babes. 💕</p><button class='btn go' onclick='play5()'>▶ Watch Episode 1 (sound on!)</button><button class='btn alt' onclick='play6()'>▶ Watch Episode 2 (sound on!)</button></div>");
+  show("<div class='intro'><h1>Lulu Island</h1>"+lulu()+"<p class='tag sub'>Short episodes from the villa. Sound on, babes. 💕</p><button class='btn go' onclick='play5()'>▶ Watch Episode 1 (sound on!)</button><button class='btn alt' onclick='play6()'>▶ Watch Episode 2 (sound on!)</button><button class='btn alt' onclick='play7()'>▶ Watch Episode 3 (sound on!)</button></div>");
 }
 var AC=null,M=null,NB=null,TL=[];
 function at(ms,f){TL.push(setTimeout(f,ms))}
@@ -463,7 +468,62 @@ function play6(){
   seq(98,["Rie","Kim","Damien","Lulu","Soomy"],MB,"THE NEXT MORNING ☀️",[["Rie","Okay, who did Lulu pick?? I need to know!","😍"],["Kim","I heard footsteps last night…","🤨"],["Damien","Lulu? Anything to share?","😏"],["Lulu","A lady never tells~ 😉","😍",1.7],["Soomy","…I'm just here for breakfast.","😶"]],2.4);
   seq(110,["Puddy","Faye"],PB,"MEANWHILE…",[["Puddy","Wait… did something happen last night?","🙂"],["Faye","Honestly? I slept great.","😴"]],2.4);
   S(114.8,function(){slam2("Nobody knows…","#12041f")});S(116.4,function(){slam2("…except two.","#7a0f3a")});
-  S(118,function(){ttl("Episode 3 · Coming Soon",1)});
+  S(118,function(){ttl("Episode 3 · Lulu's Court",1)});
+}
+var oldFace=face;
+function mix(h,t,k){var a=parseInt(h.slice(1),16),b=parseInt(t.slice(1),16),f=function(q){var u=(a>>q)&255,v=(b>>q)&255;return Math.round(u+(v-u)*k)};return "rgb("+f(16)+","+f(8)+","+f(0)+")"}
+function st(x,y,k,d){return "<g transform='translate("+x+" "+y+") scale("+k+")'><path class='tw' style='animation-delay:"+d+"s' d='M0-8L2-2L8 0L2 2L0 8L-2 2L-8 0L-2-2Z' fill='#fff6c8'/></g>"}
+var GL={Lola:{fl:"#7fb3ff",fr:1},Bree:{fl:"#ff8fb0",fr:1,tat:1},Lulu:{fl:"#ff5c9b",fr:1},Damien:{fl:"#ff9ccf",fr:1,ch:1},Rie:{fl:"#ffd166"},Talisa:{fl:"#ff7a59"},Kim:{fl:"#c084fc"},Puddy:{fl:"#ffb347"},Faye:{fl:"#ff9ccf"},Fefe:{fl:"#ffcc4d",fr:1},Soomy:{fl:"#7fd1ff",fr:1}};
+face=function(n){var o=CAST[n],g=GL[n]||{fl:"#ff5c9b"},s=oldFace(n),sk=o.skin,sh=mix(sk,"#8a3a2a",.22),hi=mix(o.hair,"#ffffff",.35),eye=o.eye||"#4a2a12",L={long:200,mid:172,bob:130,wolf:134,pony:122}[o.style],x="",i,pt="";
+  s=s.replace("<path d='M40 220C40 172 70 158 100 158C130 158 160 172 160 220Z' fill='"+o.top+"'/>","<path d='M40 220C40 172 70 158 100 158C130 158 160 172 160 220Z' fill='"+sk+"'/><path d='M60 220L68 186Q84 178 100 194Q116 178 132 186L140 220Z' fill='"+o.top+"'/><path d='M68 186Q84 178 100 194Q116 178 132 186' fill='none' stroke='"+mix(o.top,"#000000",.2)+"' stroke-width='2.5'/>");
+  [80,120].forEach(function(e){s=s.replace("<circle cx='"+e+"' cy='118' r='4' fill='#1d1208'/>","<circle cx='"+e+"' cy='118' r='8.5' fill='none' stroke='#000' stroke-opacity='.25' stroke-width='1.4'/><circle cx='"+e+"' cy='123' r='4' fill='"+mix(eye,"#ffffff",.55)+"' opacity='.5'/><circle cx='"+e+"' cy='118' r='4' fill='#1d1208'/><circle cx='"+(e+4)+"' cy='123' r='1.6' fill='#fff'/>")});
+  x+="<path d='M138 84C150 112 142 140 112 154C136 140 144 114 138 84Z' fill='"+sh+"' opacity='.4'/><path d='M90 146Q100 164 110 146Z' fill='"+sh+"' opacity='.6'/>";
+  x+="<path d='M62 54C52 90 60 "+(L-70)+" 50 "+L+"M138 54C148 90 140 "+(L-70)+" 150 "+L+"' stroke='"+hi+"' stroke-width='4' fill='none' stroke-linecap='round' opacity='.5'/><path d='M72 52Q98 38 132 46' stroke='"+hi+"' stroke-width='4' fill='none' stroke-linecap='round' opacity='.6'/><path d='M66 112L60 108M134 112L140 108' stroke='#2a160c' stroke-width='3' stroke-linecap='round'/>";
+  if(g.fr)[[66,132],[74,140],[82,134],[118,134],[126,140],[134,132],[98,130],[104,130]].forEach(function(q){x+="<circle cx='"+q[0]+"' cy='"+q[1]+"' r='1.4' fill='#d9926f' opacity='.7'/>"});
+  x+="<path d='M92 142Q100 152 108 142Q100 146 92 142Z' fill='#e64b78'/><path d='M97 146Q100 148 103 146' stroke='#ffd9e3' stroke-width='1.6' fill='none' stroke-linecap='round'/>";
+  for(i=0;i<360;i+=72)pt+="<ellipse cy='-7' rx='5' ry='8' fill='"+g.fl+"' transform='rotate("+i+")'/>";
+  x+="<g transform='translate("+(o.style==="pony"?58:142)+" 48)'>"+pt+"<circle r='3.5' fill='#ffcc4d'/></g><circle cx='57' cy='142' r='4' fill='none' stroke='#ffcc4d' stroke-width='2.2'/><circle cx='143' cy='142' r='4' fill='none' stroke='#ffcc4d' stroke-width='2.2'/>";
+  if(g.ch)x+="<path d='M86 150Q100 162 114 150' stroke='#ff9ccf' stroke-width='5' fill='none' stroke-linecap='round'/><circle cx='100' cy='159' r='3.5' fill='#ffcc4d'/><path d='M100 162Q96 176 108 190' stroke='#ffcc4d' stroke-width='1.5' fill='none'/>";
+  if(g.tat)x+="<path d='M48 200C54 190 64 192 66 200S58 212 52 206M58 214Q64 208 70 214' stroke='#3b2a2a' stroke-width='1.8' fill='none' opacity='.6'/>";
+  x+=st(28,44,1,0)+st(176,96,.8,.6)+st(24,130,.7,1.1);
+  return s.replace("</svg>",x+"</svg>")};
+function musG(t0,fl,r0,r1,end){
+  var B=.5,CH=[[57,60,64],[53,57,60],[60,64,67],[55,59,62]],RT=[45,41,48,43];
+  for(var bar=0;bar<end/2;bar++){var s=bar*2,c=CH[bar%4],r=RT[bar%4],F=fl(s);
+    if(F.calm&&bar%2===0)c.forEach(function(n){tone(t0+s,mtof(n-12),4,'sine',.1,900)});
+    for(var b=0;b<4;b++){var t=t0+s+b*B;
+      if(F.lull&&b===0)tone(t,mtof(r),1.6,'sine',.25,500);
+      if(F.heart&&(b===0||b===2)){kick(t);kick(t+.2);if(b===0)tone(t,mtof(r-12),1.8,'sine',.5,300)}
+      if(F.beat){kick(t);nz(t+B/2,.05,.12,7000);if(b%2)nz(t,.12,.3,1200);tone(t,mtof(r),.4,'sawtooth',.24,420);tone(t+B/2,mtof(r+(b%2?7:0)),.2,'sawtooth',.18,420)}}
+    if(F.beat)[0,1.5].forEach(function(x){c.forEach(function(n){tone(t0+s+x*B,mtof(n),.35,'square',.05,2500)})});
+    if(F.lead)for(var k=0;k<8;k++)tone(t0+s+k*.25,mtof(c[k%3]+12+(k%4===3?12:0)),.22,'sawtooth',.05,3000);
+  }
+  nz(t0+16,1.6,.5,3000);kick(t0+16);
+  var sr=AC.createBufferSource(),f=AC.createBiquadFilter(),g=AC.createGain();sr.buffer=NB;sr.loop=true;f.type='highpass';f.frequency.setValueAtTime(400,t0+r0);f.frequency.exponentialRampToValueAtTime(7000,t0+r1);g.gain.setValueAtTime(.001,t0+r0);g.gain.linearRampToValueAtTime(.3,t0+r1);g.gain.setValueAtTime(0,t0+r1+.05);sr.connect(f);f.connect(g);g.connect(M);sr.start(t0+r0);sr.stop(t0+r1+.1);
+  nz(t0+r1,1.6,.5,3000);kick(t0+r1);
+  M.gain.setValueAtTime(.8,t0+end-1.2);M.gain.linearRampToValueAtTime(.05,t0+end+.2);
+}
+function role(n,tag,line,a,b){sc("<div class='sc m' style='background:linear-gradient(160deg,"+a+","+b+")'><div class='vig'></div><div class='nx'>CHOOSE YOUR ROLE</div><div class='ph fc'>"+face(n)+"</div><div class='nm'>"+kin(n,.2,.08)+"</div><div class='sb'>"+tag+"</div><div class='sp'>"+kin(line,.7,.035)+"</div></div>")}
+var ROLES=[["Rie","🎀 Obsessed bestie","I've known her five minutes. We're soulmates.","#ff9a3c","#ff3d81"],["Talisa","🕵️ Secret hater","Hater? Me? …Maybe.","#14b8b0","#5b2a86"],["Kim","👑 Fake queen","Queen of what? Of winning.","#8e2de2","#ff5c9b"],["Damien","💋 Jealous ex-bestie","We're not talking about it.","#3a7bd5","#8e2de2"],["Fefe","🤡 Desperate fan","I'd do anything. ANYTHING.","#ff5c9b","#5b2a86"],["Puddy","🤡 Desperate fan","Faye picked this for me.","#ffb347","#ff5c9b"],["Faye","💕 Loyal bodyguard","I'm protecting Puddy. Obviously.","#14b8b0","#ffcc4d"],["Soomy","💕 Loyal bodyguard","I'll guard her with my life.","#0a7f86","#3a0a3f"]];
+var PITCH=[["Rie","I'd carry Lulu's bags, her drinks… her whole life. 🎀","😍","Aww, Rie. You're my emotional support mango. 🥭","😳"],["Talisa","Obsessed? She's fine. I guess. 🙄","🤨","Girl, you're staring at me right now. 😏","😳"],["Kim","I'm not obsessed. I'm here for the crown. 👑","😎","Bold. I like bold. Don't touch the crown though. 😘","😏"],["Damien","I was her bestie first. FIRST. 💋","😤","Damien, it's been five minutes, babe. 😂","😅"],["Fefe","I would do ANYTHING for Lulu. Ask me! 🤡","🥺","Aww, hold my drink? 💅","😍"],["Soomy","I'm obsessed. Quietly. Very quietly. 😶","😶","Soomy… behave. 😉","😳"]];
+function play7(){
+  var st2=document.createElement('div');st2.id='stage';st2.innerHTML="<div id='sc'></div><div class='bug'>● EPISODE 3</div><button class='skip' onclick='skip()'>Skip ▸</button>";document.body.appendChild(st2);
+  try{AC=new (window.AudioContext||window.webkitAudioContext)();if(AC.state==='suspended')AC.resume();M=AC.createGain();M.gain.value=.8;M.connect(AC.destination);NB=AC.createBuffer(1,AC.sampleRate*2,AC.sampleRate);var d=NB.getChannelData(0);for(var i=0;i<d.length;i++)d[i]=Math.random()*2-1;musG(AC.currentTime+.15,function(s){return{calm:s<8||s>=114,lull:s>=8&&s<16,beat:(s>=16&&s<94)||(s>=108&&s<114),heart:s>=94&&s<108,lead:s>=24&&s<94}},109.4,113.4,120)}catch(e){AC=null}
+  var S=function(s,f){at(Math.round(s*1000)+150,f)},HB="linear-gradient(#ffb06a,#ff5c9b 55%,#14b8b0 55%)",PH="linear-gradient(160deg,#2b0a2e,#7a0f5a)",PB="linear-gradient(160deg,#0b1a3a,#5b2a86)",RB="linear-gradient(160deg,#2b0a2e,#8a0f3a)",H=["Lola","Bree"];
+  var seq=function(t0,f,bg,lb,L,dt){L.forEach(function(l,k){S(t0+k*dt,function(){talk(f,bg,lb,l)})})};
+  S(0,function(){sc("<div class='sc' style='background:linear-gradient(#12041f,#5b2a86 55%,#ff9a6a)'><div class='pl sway' style='left:4%'>🌴</div><div class='pl sway' style='right:4%'>🌴</div><div class='sea'></div><div class='caps'><p class='cl'>"+kin("Last time on Lulu Island…",.5,.06)+"</p><p class='cl'>"+kin("Lulu made her choice.",2.8,.07)+"</p><p class='cl pk'>"+kin("Nobody knows… except two.",4.8,.06)+"</p></div></div>")});
+  seq(8,H,HB,"YOUR HOSTS",[["Lola","Good morning, islanders! ☀️","😍",1.35],["Bree","I hope you all slept well…","😏",1.1],["Lola","Because today is a challenge.","😮",1.35],["Bree","Welcome to Lulu's Court. 👑","😈",1.1]],2);
+  S(16,function(){ttl("Episode 3 · Lulu's Court");spk("Lulu Island. Episode three.",1.2)});
+  seq(24,H,HB,"LULU'S COURT 👑",[["Lola","Lulu is the queen of this island. 👑","😍",1.35],["Bree","Everyone picks a role.","🤩",1.1],["Lola","Bestie. Fan. Rival. Hater. Bodyguard.","👀",1.35],["Bree","Choose wisely. Everyone is replaceable. 💀","😱",1.1]],2.4);
+  ROLES.forEach(function(x,i){S(33.6+i*2.4,function(){role(x[0],x[1],x[2],x[3],x[4])})});
+  seq(52.8,H,HB,"FIRST CHALLENGE",[["Bree","First challenge: why are you obsessed with Lulu?","😳",1.1],["Lola","You have sixty seconds. No boring answers.","😬",1.35],["Bree","The audience votes for the most iconic.","🤩",1.1]],2.4);
+  PITCH.forEach(function(p,i){seq(60+i*4.8,[p[0],"Lulu"],PH,"PITCH TO THE QUEEN 👑",[[p[0],p[1],p[2]],["Lulu",p[3],p[4],1.7]],2.4)});
+  seq(88.8,["Puddy","Faye"],PB,"PITCH TO THE QUEEN 👑",[["Puddy","Honestly? We're only here for each other. 😊","🙂"],["Faye","Lulu who? 😌","😏"]],2.4);
+  seq(93.6,H,HB,"PLOT TWIST 💀",[["Lola","Time's up! Votes are in… but first!","😮",1.35],["Bree","A plot twist. 💀","😱",1.1],["Lola","Someone has been running a fake Lulu fan account.","😳",1.35]],2.4);
+  seq(100.8,["Rie","Talisa","Kim","Damien","Fefe"],RB,"THE ISLANDERS REACT",[["Kim","WHAT. Who would do that?!","😱"],["Talisa","…Not me. Obviously. 👀","🤨"]],2.4);
+  seq(105.6,["Lulu","Soomy"],PH,"THE QUEEN SPEAKS 👑",[["Lulu","Ooh, messy. I love it. 😏","😶",1.7]],2.4);
+  S(108,function(){slam2("Who is the fake fan?","#12041f")});S(109.8,function(){slam2("Who gets replaced?","#7a0f3a")});S(111.6,function(){slam2("Next time…","#3a0a1f")});
+  S(113.4,function(){ttl("Episode 4 · The Fake Fan",1)});
 }
 intro();
 </script>
