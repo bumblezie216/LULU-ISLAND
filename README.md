@@ -273,10 +273,10 @@ function lulu(){
   "<g class='bubble'><rect x='198' y='64' width='150' height='58' rx='18' fill='#fff'/><path d='M222 120L214 142L244 120Z' fill='#fff'/><text x='212' y='88' font-size='14' font-weight='800' font-family='Nunito,sans-serif' fill='#2a0f3d'>Hey you… 😉</text><text x='212' y='108' font-size='13' font-weight='800' font-family='Nunito,sans-serif' fill='#2a0f3d'>ready to couple up?</text></g></svg>";
 }
 function intro(){
-  show("<div class='intro'><h1>Lulu Island</h1>"+lulu()+"<p class='tag sub'>Short episodes from the villa. Sound on, babes. 💕</p><button class='btn go' onclick='play5()'>▶ Watch Episode 1 (sound on!)</button><button class='btn alt' onclick='play6()'>▶ Watch Episode 2 (sound on!)</button><button class='btn alt' onclick='play7()'>▶ Watch Episode 3 (sound on!)</button></div>");
+  show("<div class='intro'><h1>Lulu Island</h1>"+lulu()+"<p class='tag sub'>Short episodes from the villa. Sound on, babes. 💕</p><button class='btn go' onclick='play5()'>▶ Watch Episode 1 (sound on!)</button><button class='btn alt' onclick='play6()'>▶ Watch Episode 2 (sound on!)</button><button class='btn alt' onclick='play7()'>▶ Watch Episode 3 (sound on!)</button><button class='btn alt' onclick='play8()'>▶ Watch Episode 4 (sound on!)</button><button class='btn alt' onclick='play9()'>▶ Watch Episode 5 (sound on!)</button></div>");
 }
 var AC=null,M=null,NB=null,TL=[];
-function at(ms,f){TL.push(setTimeout(f,ms))}
+var TS=1.6;function at(ms,f){TL.push(setTimeout(f,ms*TS))}
 function sc(h){$('#sc').innerHTML="<div class='flash'></div>"+h}
 function mtof(m){return 440*Math.pow(2,(m-69)/12)}
 function tone(t,f,d,ty,v,lp){var o=AC.createOscillator(),g=AC.createGain(),l=AC.createBiquadFilter();o.type=ty;o.frequency.value=f;l.type='lowpass';l.frequency.value=lp;g.gain.setValueAtTime(.0001,t);g.gain.linearRampToValueAtTime(v,t+.01);g.gain.exponentialRampToValueAtTime(.001,t+d);o.connect(l);l.connect(g);g.connect(M);o.start(t);o.stop(t+d+.05)}
@@ -411,7 +411,7 @@ function mus(t0){
 var INTRO=[["Rie","Calm on the outside. Plotting on the inside.","Hi! I'm Rie. I come in peace… mostly. 🌺","#ff9a3c","#ff3d81"],["Talisa","She sees everything. She says nothing.","I'm Talisa. I'm just here to observe. 👀","#14b8b0","#5b2a86"],["Kim","Here to win. Heart optional.","Kim. I'm not here to make friends. Okay, maybe one.","#8e2de2","#ff5c9b"],["Damien","Heartbreaker. Allegedly.","Hey, I'm Damien. Don't fall for me… okay, you can.","#3a7bd5","#8e2de2"],["Fefe","One secret could burn the villa down.","I'm Fefe. I have a secret. Ask me later 🤫","#ff5c9b","#5b2a86"],["Soomy","Quiet. Mysterious. Watching.","I'm Soomy. I'm just here to see what happens.","#0a7f86","#3a0a3f"]];
 function play5(){
   var st=document.createElement('div');st.id='stage';st.innerHTML="<div id='sc'></div><div class='bug'>● EPISODE 1</div><button class='skip' onclick='skip()'>Skip ▸</button>";document.body.appendChild(st);
-  try{AC=new (window.AudioContext||window.webkitAudioContext)();if(AC.state==='suspended')AC.resume();M=AC.createGain();M.gain.value=.8;M.connect(AC.destination);NB=AC.createBuffer(1,AC.sampleRate*2,AC.sampleRate);var d=NB.getChannelData(0);for(var i=0;i<d.length;i++)d[i]=Math.random()*2-1;mus(AC.currentTime+.15)}catch(e){AC=null}
+  try{AC=new (window.AudioContext||window.webkitAudioContext)();if(AC.state==='suspended')AC.resume();M=AC.createGain();M.gain.value=.8;M.connect(AC.destination);NB=AC.createBuffer(1,AC.sampleRate*2,AC.sampleRate);var d=NB.getChannelData(0);for(var i=0;i<d.length;i++)d[i]=Math.random()*2-1;musG(AC.currentTime+.15,function(s){return{calm:s<8||s>=116,lull:s>=8&&s<16,beat:(s>=16&&s<72)||(s>=82&&s<116),heart:s>=72&&s<82,lead:(s>=24&&s<72)||(s>=96&&s<116)}},111.6,115.6,120,function(t0,K){[72,76,79,84].forEach(function(n,i){tone(t0+(72+i*.3)*K,mtof(n+12),.9,'triangle',.12,5000)})})}catch(e){AC=null}
   var S=function(s,f){at(Math.round(s*1000)+150,f)},HB="linear-gradient(#ffb06a,#ff5c9b 55%,#14b8b0 55%)",RB="linear-gradient(160deg,#2b0a2e,#8a0f3a)",PB="linear-gradient(160deg,#0b1a3a,#5b2a86)",H=["Lola","Bree"];
   var seq=function(t0,f,bg,lb,L,dt){L.forEach(function(l,k){S(t0+k*dt,function(){talk(f,bg,lb,l)})})};
   S(0,function(){sc("<div class='sc s1'><div class='sunr'></div><div class='pl sway' style='left:4%'>🌴</div><div class='pl sway' style='right:4%'>🌴</div><div class='sea'></div><div class='caps'><p class='cl'>"+kin("Nine islanders.",.6,.07)+"</p><p class='cl'>"+kin("One villa.",2.4,.07)+"</p><p class='cl pk'>"+kin("One girl everyone wants.",4.2,.06)+"</p></div></div>")});
@@ -453,7 +453,7 @@ function dec(i){var N=["Rie","Talisa","Kim","Damien","Fefe","Puddy","Faye","Soom
   sc("<div class='sc m' style='background:radial-gradient(circle,#4a0f5a,#0b0212 75%)'><div class='vig'></div><div class='nx'>LULU DECIDES…</div><div class='ph fc'>"+face("Lulu")+"</div><div class='pair rw' style='margin-top:14px'>"+row+"</div><div class='sp'>"+(i<7?kin("Hmm… "+N[i]+"? 🤔",0,.05):kin("It's Soomy. 💘",0,.06))+"</div></div>")}
 function play6(){
   var st=document.createElement('div');st.id='stage';st.innerHTML="<div id='sc'></div><div class='bug'>● EPISODE 2</div><button class='skip' onclick='skip()'>Skip ▸</button>";document.body.appendChild(st);
-  try{AC=new (window.AudioContext||window.webkitAudioContext)();if(AC.state==='suspended')AC.resume();M=AC.createGain();M.gain.value=.8;M.connect(AC.destination);NB=AC.createBuffer(1,AC.sampleRate*2,AC.sampleRate);var d=NB.getChannelData(0);for(var i=0;i<d.length;i++)d[i]=Math.random()*2-1;mus2(AC.currentTime+.15)}catch(e){AC=null}
+  try{AC=new (window.AudioContext||window.webkitAudioContext)();if(AC.state==='suspended')AC.resume();M=AC.createGain();M.gain.value=.8;M.connect(AC.destination);NB=AC.createBuffer(1,AC.sampleRate*2,AC.sampleRate);var d=NB.getChannelData(0);for(var i=0;i<d.length;i++)d[i]=Math.random()*2-1;musG(AC.currentTime+.15,function(s){return{calm:s<8||s>=118||(s>=84&&s<98),lull:(s>=8&&s<16)||(s>=84&&s<98),beat:(s>=16&&s<72)||(s>=98&&s<118),heart:s>=72&&s<84,lead:(s>=24&&s<72)||(s>=104&&s<118)}},114,118,122,function(t0,K){[72,76,79,84].forEach(function(n,i){tone(t0+(83.1+i*.3)*K,mtof(n+12),1.2,'triangle',.12,5000)})})}catch(e){AC=null}
   var S=function(s,f){at(Math.round(s*1000)+150,f)},HB="linear-gradient(#ffb06a,#ff5c9b 55%,#14b8b0 55%)",PH="linear-gradient(160deg,#0b1a3a,#3a0a5f)",NT="linear-gradient(#0b1a3a,#1b0a2b)",MB="linear-gradient(#ffd27a,#ff9a6a 60%,#ff5c9b)",PB="linear-gradient(160deg,#0b1a3a,#5b2a86)",H=["Lola","Bree"];
   var seq=function(t0,f,bg,lb,L,dt){L.forEach(function(l,k){S(t0+k*dt,function(){talk(f,bg,lb,l)})})};
   S(0,function(){sc("<div class='sc' style='background:linear-gradient(#05010d,#2a0f4d 60%,#5b2a86)'><div style='position:absolute;left:50%;bottom:36%;width:150px;height:150px;margin-left:-75px;border-radius:50%;background:#fff3cf;box-shadow:0 0 70px #cbb6ff'></div><div class='pl sway' style='left:4%'>🌴</div><div class='pl sway' style='right:4%'>🌴</div><div class='sea'></div><div class='caps'><p class='cl'>"+kin("Night one.",.6,.07)+"</p><p class='cl'>"+kin("One phone.",2.4,.07)+"</p><p class='cl pk'>"+kin("Eight chances.",4.2,.06)+"</p></div></div>")});
@@ -524,6 +524,68 @@ function play7(){
   seq(105.6,["Lulu","Soomy"],PH,"THE QUEEN SPEAKS 👑",[["Lulu","Ooh, messy. I love it. 😏","😶",1.7]],2.4);
   S(108,function(){slam2("Who is the fake fan?","#12041f")});S(109.8,function(){slam2("Who gets replaced?","#7a0f3a")});S(111.6,function(){slam2("Next time…","#3a0a1f")});
   S(113.4,function(){ttl("Episode 4 · The Fake Fan",1)});
+}
+function play8(){
+  var st2=document.createElement('div');st2.id='stage';st2.innerHTML="<div id='sc'></div><div class='bug'>● EPISODE 4</div><button class='skip' onclick='skip()'>Skip ▸</button>";document.body.appendChild(st2);
+  try{AC=new (window.AudioContext||window.webkitAudioContext)();if(AC.state==='suspended')AC.resume();M=AC.createGain();M.gain.value=.8;M.connect(AC.destination);NB=AC.createBuffer(1,AC.sampleRate*2,AC.sampleRate);var d=NB.getChannelData(0);for(var i=0;i<d.length;i++)d[i]=Math.random()*2-1;musG(AC.currentTime+.15,function(s){return{calm:s<8||s>=114,lull:s>=8&&s<16,beat:(s>=16&&s<80)||(s>=94&&s<106),heart:(s>=80&&s<94)||(s>=106&&s<114),lead:(s>=24&&s<80)||(s>=94&&s<106)}},109.4,113.4,120)}catch(e){AC=null}
+  var S=function(s,f){at(Math.round(s*1000)+150,f)},HB="linear-gradient(#ffb06a,#ff5c9b 55%,#14b8b0 55%)",QB="linear-gradient(160deg,#1a0a3a,#5b2a86)",EB="linear-gradient(160deg,#2b0a2e,#8a0f3a)",YB="linear-gradient(160deg,#0a1f2e,#14b8b0)",H=["Lola","Bree"];
+  var seq=function(t0,f,bg,lb,L,dt){L.forEach(function(l,k){S(t0+k*dt,function(){talk(f,bg,lb,l)})})};
+  S(0,function(){sc("<div class='sc' style='background:linear-gradient(#12041f,#5b2a86 55%,#ff9a6a)'><div class='pl sway' style='left:4%'>🌴</div><div class='pl sway' style='right:4%'>🌴</div><div class='sea'></div><div class='caps'><p class='cl'>"+kin("Last time on Lulu Island…",.5,.06)+"</p><p class='cl'>"+kin("A fake fan account appeared.",2.8,.06)+"</p><p class='cl pk'>"+kin("Tonight… we find out who.",5,.06)+"</p></div></div>")});
+  seq(8,H,HB,"YOUR HOSTS",[["Lola","Welcome back to Lulu's Court! 👑","😍",1.35],["Bree","Last time, a fake fan account appeared.","😱",1.1],["Lola","Tonight, we find out who.","😈",1.35],["Bree","But first… more challenges.","😏",1.1]],2);
+  S(16,function(){ttl("Episode 4 · The Fake Fan");spk("Lulu Island. Episode four.",1.2)});
+  seq(24,["Bree","Rie","Talisa","Lulu"],QB,"WHO KNOWS LULU BEST? 🧠",[["Bree","Question one: what is Lulu's favorite fruit?","🤔",1.1],["Rie","Mango! 🥭","😎"],["Talisa","…Grapes?","😬"],["Lulu","Mango. Obviously. Rie, you're my favorite. 🥭","😍",1.7]],2.4);
+  seq(33.6,["Lola","Damien","Fefe","Lulu"],QB,"WHO KNOWS LULU BEST? 🧠",[["Lola","Question two: what is Lulu's biggest fear?","😮",1.35],["Damien","Being replaced!","😏"],["Lulu","Wrong, babe. It's crabs. 🦀","😂",1.7]],2.4);
+  seq(40.8,["Fefe","Kim","Talisa","Lulu"],EB,"EXPOSE YOURSELF 😳",[["Fefe","I made a Lulu playlist. It's four hours long.","😳"],["Kim","I have a Lulu poster. Under my bed.","😶"],["Talisa","I saved all her photos. For… research.","🤨"],["Lulu","Stop, I'm blushing! 🥰","😍",1.7]],2.4);
+  seq(50.4,["Kim","Rie","Damien","Lulu"],EB,"STEAL HER BESTIE 💅",[["Kim","Lulu, pick me. I'm WAY better than Rie.","😏"],["Rie","Excuse me?! I brought mango!","😤"],["Damien","I was her bestie first!","😤"],["Lulu","Aww… I'm not choosing yet. Fight for me. 😘","😳",1.7]],2.4);
+  seq(60,["Bree","Kim","Fefe","Lola"],YB,"FAKE OR REAL FAN? 🕵️",[["Bree","Anonymous: ‘I only came here to steal the island.’","😱",1.1],["Kim","That's definitely Fefe!","😤"],["Fefe","WHAT?! I'm a desperate fan, not a villain!","😭"],["Lola","Anonymous: ‘I love Lulu more than anyone.’ 💕","😍",1.35]],2.4);
+  seq(69.6,["Lola","Puddy","Faye","Lulu"],YB,"DEFEND LULU 🛡️",[["Lola","Debate: is Lulu's laugh a bell or a siren?","😂",1.35],["Puddy","A bell! It's beautiful!","😍"],["Faye","A siren. Run.","😈"],["Puddy","Faye, take that back!","😤"]],2.4);
+  seq(79.2,H,HB,"PLOT TWIST 💀",[["Lola","Plot twist time! 💀","😱",1.35],["Bree","Lulu has chosen a new favorite girl.","😮",1.1],["Lola","And the fake fan is about to be exposed.","😏",1.35]],2.4);
+  seq(86.4,["Lola","Bree","Rie"],HB,"THE VOTES ARE IN",[["Lola","The audience has voted. Most iconic: Rie! 🎀","😍",1.35],["Bree","And the fake Lulu account belongs to…","😱",1.1]],2.4);
+  S(91.2,function(){slam2("…Damien.","#7a0f3a")});
+  seq(93,["Damien","Lulu"],EB,"THE REVEAL",[["Damien","Okay. In my defense… fourteen followers. All me.","😬"],["Lulu","Damien! 😂 I love it. Follow back!","😂",1.7]],2.4);
+  seq(97.8,["Lola","Bree","Damien"],HB,"PUNISHMENT TIME",[["Lola","Punishment time!","😈",1.35],["Bree","Damien must serenade a coconut. 🥥","😂",1.1],["Damien","…I hate it here. 🥥","😩"]],2.4);
+  seq(105,H,HB,"ONE MORE TWIST",[["Bree","One more twist…","😮",1.1],["Lola","One of you is secretly plotting to steal the island. 👀","😱",1.35]],2.4);
+  S(109.8,function(){slam2("Who wants the island?","#12041f")});S(111.6,function(){slam2("Next time…","#3a0a1f")});
+  S(113.4,function(){ttl("Episode 5 · The Island Plot",1)});
+}
+function musG(t0,fl,r0,r1,end,ex){
+  var K=TS,B=.5*K,CH=[[57,60,64],[53,57,60],[60,64,67],[55,59,62]],RT=[45,41,48,43];
+  for(var bar=0;bar<end/2;bar++){var s=bar*2,T0=t0+s*K,c=CH[bar%4],r=RT[bar%4],F=fl(s);
+    if(F.calm&&bar%2===0)c.forEach(function(n){tone(T0,mtof(n-12),4*K,'sine',.1,900)});
+    for(var b=0;b<4;b++){var t=T0+b*B;
+      if(F.lull&&b===0)tone(t,mtof(r),1.6*K,'sine',.25,500);
+      if(F.heart&&(b===0||b===2)){kick(t);kick(t+.2);if(b===0)tone(t,mtof(r-12),1.8*K,'sine',.5,300)}
+      if(F.beat){kick(t);nz(t+B/2,.05,.12,7000);if(b%2)nz(t,.12,.3,1200);tone(t,mtof(r),.4,'sawtooth',.24,420);tone(t+B/2,mtof(r+(b%2?7:0)),.2,'sawtooth',.18,420)}}
+    if(F.beat)[0,1.5].forEach(function(x){c.forEach(function(n){tone(T0+x*B,mtof(n),.35,'square',.05,2500)})});
+    if(F.lead)for(var k=0;k<8;k++)tone(T0+k*.25*K,mtof(c[k%3]+12+(k%4===3?12:0)),.22,'sawtooth',.05,3000);
+  }
+  if(ex)ex(t0,K);
+  nz(t0+16*K,1.6,.5,3000);kick(t0+16*K);
+  var sr=AC.createBufferSource(),f=AC.createBiquadFilter(),g=AC.createGain();sr.buffer=NB;sr.loop=true;f.type='highpass';f.frequency.setValueAtTime(400,t0+r0*K);f.frequency.exponentialRampToValueAtTime(7000,t0+r1*K);g.gain.setValueAtTime(.001,t0+r0*K);g.gain.linearRampToValueAtTime(.3,t0+r1*K);g.gain.setValueAtTime(0,t0+r1*K+.05);sr.connect(f);f.connect(g);g.connect(M);sr.start(t0+r0*K);sr.stop(t0+r1*K+.1);
+  nz(t0+r1*K,1.6,.5,3000);kick(t0+r1*K);
+  M.gain.setValueAtTime(.8,t0+(end-1.2)*K);M.gain.linearRampToValueAtTime(.05,t0+(end+.2)*K);
+}
+function solo(n,bg,lb,line){sc("<div class='sc m' style='background:"+bg+"'><div class='scan'></div><div class='vig'></div><div class='nx'>"+lb+"</div><div class='ph fc'>"+face(n)+"</div><div class='sp'><b>"+n+":</b> "+kin(line,.3,.04)+"</div></div>")}
+var CONF=[["Kim","Honestly? I have a tiny crush on Lulu. TINY. 😳"],["Talisa","I'm the secret hater. …Okay. I'm the secret crush. 🤫"],["Rie","I won most iconic, but I'm nervous. Someone's plotting. 👀"],["Soomy","I know something nobody else knows. 🤐"],["Puddy","Faye and I are great! Why is everyone looking at us? 😅"],["Faye","I'm very happy. Very, very happy. Don't ask. 😌"]];
+function play9(){
+  var st2=document.createElement('div');st2.id='stage';st2.innerHTML="<div id='sc'></div><div class='bug'>● EPISODE 5</div><button class='skip' onclick='skip()'>Skip ▸</button>";document.body.appendChild(st2);
+  try{AC=new (window.AudioContext||window.webkitAudioContext)();if(AC.state==='suspended')AC.resume();M=AC.createGain();M.gain.value=.8;M.connect(AC.destination);NB=AC.createBuffer(1,AC.sampleRate*2,AC.sampleRate);var d=NB.getChannelData(0);for(var i=0;i<d.length;i++)d[i]=Math.random()*2-1;musG(AC.currentTime+.15,function(s){return{calm:s<8||s>=130,lull:(s>=8&&s<16)||(s>=52&&s<71)||(s>=116&&s<124),beat:(s>=16&&s<52)||(s>=78&&s<100)||(s>=124&&s<130),heart:(s>=71&&s<78)||(s>=100&&s<116),lead:(s>=24&&s<52)||(s>=78&&s<100)}},125,129,136)}catch(e){AC=null}
+  var S=function(s,f){at(Math.round(s*1000)+150,f)},HB="linear-gradient(#ffb06a,#ff5c9b 55%,#14b8b0 55%)",MB="linear-gradient(#ffd27a,#ff9a6a 60%,#ff5c9b)",EB="linear-gradient(160deg,#2b0a2e,#8a0f3a)",DR="linear-gradient(160deg,#120414,#4a0f2e)",PR="linear-gradient(#ff9a6a,#ff3d81 60%,#5b2a86)",H=["Lola","Bree"];
+  var seq=function(t0,f,bg,lb,L,dt){L.forEach(function(l,k){S(t0+k*dt,function(){talk(f,bg,lb,l)})})};
+  S(0,function(){sc("<div class='sc' style='background:linear-gradient(#12041f,#5b2a86 55%,#ff9a6a)'><div class='pl sway' style='left:4%'>🌴</div><div class='pl sway' style='right:4%'>🌴</div><div class='sea'></div><div class='caps'><p class='cl'>"+kin("Last time on Lulu Island…",.5,.06)+"</p><p class='cl'>"+kin("A fake fan. A coconut. A twist.",2.8,.06)+"</p><p class='cl pk'>"+kin("And someone wants the island…",5.4,.06)+"</p></div></div>")});
+  seq(8,H,HB,"YOUR HOSTS",[["Lola","Welcome back to the villa! 🌴","😍",1.35],["Bree","Last time: a fake fan, a coconut… and a twist.","😂",1.1],["Lola","Tonight, someone wants to steal the island.","😱",1.35],["Bree","And Lulu is about to make a very dramatic move.","😏",1.1]],2);
+  S(16,function(){ttl("Episode 5 · The Island Plot");spk("Lulu Island. Episode five.",1.2)});
+  seq(24,["Rie","Kim","Talisa","Fefe"],MB,"THE NEXT MORNING ☀️",[["Rie","Did anyone sleep? I kept hearing coconut music. 🥥","😴"],["Kim","Damien practiced all night. For the coconut. 🎶","😂"],["Fefe","I thought the villa was haunted. 👻","😱"],["Talisa","…I'm watching everyone today. 👀","😶"]],2.4);
+  seq(33.6,["Bree","Lulu","Damien"],EB,"BREAKING NEWS 💔",[["Bree","Breaking news: Lulu has unfollowed her best friend. 💔","😱",1.1],["Lulu","Damien… I have to tell you something. 💔","😬",1.7],["Damien","…Is it about the coconut?","😳"],["Lulu","I unfollowed you.","😶",1.7],["Damien","YOU WHAT?!","😭"],["Lulu","Fourteen accounts, babe. Boundaries. 😘","😏",1.7],["Damien","I thought we were besties! 😭","😭"],["Lulu","We are! …Just not online. 💅","😂",1.7]],2.4);
+  CONF.forEach(function(c,i){S(52.8+i*3,function(){solo(c[0],DR,"DIARY ROOM 🎥",c[1])})});
+  seq(70.8,H,HB,"PLOT TWIST 💀",[["Bree","Plot twist! 💀","😱",1.1],["Lola","Two contestants have the same secret crush on Lulu.","😳",1.35],["Bree","And they just said it on camera. 🎥","😂",1.1]],2.4);
+  seq(78,["Kim","Talisa","Lulu"],EB,"AWKWARD 😬",[["Kim","Wait. You like Lulu too?!","😱"],["Talisa","…Maybe. I was just observing. 👀","😳"],["Kim","Observing?! You wrote her a poem!","🤨"],["Talisa","Kim, you have a poster!","😤"],["Lulu","Hiii cuties! What's going on? 💕","😳",1.7]],2.4);
+  seq(90,["Lola","Rie","Fefe","Soomy"],PR,"BEACH PARTY 🎉",[["Lola","Beach party tonight! Everybody dance! 🎉","🕺",1.35],["Rie","I brought mango punch! 🥭","😍"],["Fefe","Is the playlist four hours long? 🤡","😂"],["Soomy","…Lulu, can we talk later? 🤫","😶"]],2.4);
+  S(99.6,function(){sc("<div class='sc' style='background:#000'><div class='vig'></div><div class='ph2'>📝 A note slides under the door…<br><small>‘The island will be mine.’</small></div></div>");spk("The island will be mine.",.8)});
+  seq(104.4,["Rie","Faye","Puddy","Fefe","Soomy"],DR,"THE ISLAND PLOT 🕵️",[["Rie","WHO WROTE THIS NOTE?!","😱"],["Faye","Not me! I was with Puddy.","😅"],["Puddy","She was! …I think.","😬"],["Fefe","It's always the quiet ones. 👀","👀"],["Soomy","…Why is everyone looking at me?","😶"]],2.4);
+  seq(116.4,H,HB,"NEXT TIME",[["Lola","Someone wants Lulu's island.","😱",1.35],["Bree","Who will make the first move?","😏",1.1],["Lola","Next time on Lulu Island…","😈",1.35]],2.4);
+  S(123.6,function(){slam2("A secret alliance…","#3a0a1f")});S(125.4,function(){slam2("A stolen crown…","#7a0f3a")});S(127.2,function(){slam2("Next time…","#12041f")});
+  S(129,function(){ttl("Episode 6 · The Crown Heist",1)});
 }
 intro();
 </script>
