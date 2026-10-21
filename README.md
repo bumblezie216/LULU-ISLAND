@@ -273,7 +273,7 @@ function lulu(){
   "<g class='bubble'><rect x='198' y='64' width='150' height='58' rx='18' fill='#fff'/><path d='M222 120L214 142L244 120Z' fill='#fff'/><text x='212' y='88' font-size='14' font-weight='800' font-family='Nunito,sans-serif' fill='#2a0f3d'>Hey you… 😉</text><text x='212' y='108' font-size='13' font-weight='800' font-family='Nunito,sans-serif' fill='#2a0f3d'>ready to couple up?</text></g></svg>";
 }
 function intro(){
-  show("<div class='intro'><h1>Lulu Island</h1>"+lulu()+"<p class='tag sub'>Short episodes from the villa. Sound on, babes. 💕</p><button class='btn go' onclick='play5()'>▶ Watch Episode 1 (sound on!)</button><button class='btn alt' onclick='play6()'>▶ Watch Episode 2 (sound on!)</button><button class='btn alt' onclick='play7()'>▶ Watch Episode 3 (sound on!)</button><button class='btn alt' onclick='play8()'>▶ Watch Episode 4 (sound on!)</button><button class='btn alt' onclick='play9()'>▶ Watch Episode 5 (sound on!)</button></div>");
+  show("<div class='intro'><h1>Lulu Island</h1>"+lulu()+"<p class='tag sub'>Short episodes from the villa. Sound on, babes. 💕</p><button class='btn go' onclick='play5()'>▶ Watch Episode 1 (sound on!)</button><button class='btn alt' onclick='play6()'>▶ Watch Episode 2 (sound on!)</button><button class='btn alt' onclick='play7()'>▶ Watch Episode 3 (sound on!)</button><button class='btn alt' onclick='play8()'>▶ Watch Episode 4 (sound on!)</button><button class='btn alt' onclick='play9()'>▶ Watch Episode 5 (sound on!)</button><button class='btn alt' onclick='play10()'>▶ Watch Episode 6 (sound on!)</button><button class='btn alt' onclick='play11()'>▶ Watch Episode 7 (sound on!)</button></div>");
 }
 var AC=null,M=null,NB=null,TL=[];
 var TS=1.6;function at(ms,f){TL.push(setTimeout(f,ms*TS))}
@@ -586,6 +586,62 @@ function play9(){
   seq(116.4,H,HB,"NEXT TIME",[["Lola","Someone wants Lulu's island.","😱",1.35],["Bree","Who will make the first move?","😏",1.1],["Lola","Next time on Lulu Island…","😈",1.35]],2.4);
   S(123.6,function(){slam2("A secret alliance…","#3a0a1f")});S(125.4,function(){slam2("A stolen crown…","#7a0f3a")});S(127.2,function(){slam2("Next time…","#12041f")});
   S(129,function(){ttl("Episode 6 · The Crown Heist",1)});
+}
+CAST.Sofi={skin:"#f1c9a5",hair:"#c9a46a",style:"long",top:"#ff4d94"};
+CAST.Diva={skin:"#c98f63",hair:"#2a1a3a",style:"mid",top:"#8e2de2"};
+CAST.Diana={skin:"#f6d9bd",hair:"#a3331f",style:"wolf",top:"#ff9a3c"};
+CAST.Lucy={skin:"#fde6d8",hair:"#e8c47a",style:"bob",top:"#14b8b0"};
+CAST.Yuna={skin:"#f6d9bd",hair:"#1a1512",style:"long",top:"#ffcc4d"};
+GL.Sofi={fl:"#ff4d94"};GL.Diva={fl:"#c084fc"};GL.Diana={fl:"#ff7a59"};GL.Lucy={fl:"#7fd1ff"};GL.Yuna={fl:"#ffcc4d"};
+var HBG="linear-gradient(#ffb06a,#ff5c9b 55%,#14b8b0 55%)",MBG="linear-gradient(#ffd27a,#ff9a6a 60%,#ff5c9b)",EBG="linear-gradient(160deg,#2b0a2e,#8a0f3a)",DRG="linear-gradient(160deg,#120414,#4a0f2e)",HH=["Lola","Bree"];
+function SG(s,f){at(Math.round(s*1000)+150,f)}
+function seqG(t0,f,bg,lb,L,dt){L.forEach(function(l,k){SG(t0+k*dt,function(){talk(f,bg,lb,l)})})}
+function card3(lb,n,tag,line,a,b){sc("<div class='sc m' style='background:linear-gradient(160deg,"+a+","+b+")'><div class='vig'></div><div class='nx'>"+lb+"</div><div class='ph fc'>"+face(n)+"</div><div class='nm'>"+kin(n,.2,.08)+"</div><div class='sb'>"+tag+"</div><div class='sp'>"+kin(line,.7,.035)+"</div></div>")}
+function recap(a,b){sc("<div class='sc' style='background:linear-gradient(#12041f,#5b2a86 55%,#ff9a6a)'><div class='pl sway' style='left:4%'>🌴</div><div class='pl sway' style='right:4%'>🌴</div><div class='sea'></div><div class='caps'><p class='cl'>"+kin("Last time on Lulu Island…",.5,.06)+"</p><p class='cl'>"+kin(a,2.8,.06)+"</p><p class='cl pk'>"+kin(b,5.6,.06)+"</p></div></div>")}
+function boot(lb,fl,r0,r1,end){var st2=document.createElement('div');st2.id='stage';st2.innerHTML="<div id='sc'></div><div class='bug'>● "+lb+"</div><button class='skip' onclick='skip()'>Skip ▸</button>";document.body.appendChild(st2);
+  try{AC=new (window.AudioContext||window.webkitAudioContext)();if(AC.state==='suspended')AC.resume();M=AC.createGain();M.gain.value=.8;M.connect(AC.destination);NB=AC.createBuffer(1,AC.sampleRate*2,AC.sampleRate);var d=NB.getChannelData(0);for(var i=0;i<d.length;i++)d[i]=Math.random()*2-1;musG(AC.currentTime+.15,fl,r0,r1,end)}catch(e){AC=null}}
+function play10(){
+  boot("EPISODE 6",function(s){return{calm:s<8||s>=132,lull:(s>=8&&s<16)||(s>=94&&s<107),beat:(s>=16&&s<86)||(s>=107&&s<112),heart:(s>=86&&s<94)||(s>=112&&s<130),lead:s>=24&&s<86}},126.2,130.2,136);
+  SG(0,function(){recap("A note: ‘The island will be mine.’","And nobody knows who wrote it…")});
+  seqG(8,HH,HBG,"YOUR HOSTS",[["Lola","Welcome back, islanders! 🌴","😍",1.35],["Bree","Today, the villa gets… new energy.","😏",1.1],["Lola","Four new islanders are walking in right now. 💥","😱",1.35],["Bree","And a new host. She loves secrets. 🤫","😈",1.1]],2);
+  SG(16,function(){ttl("Episode 6 · The Crown Heist");spk("Lulu Island. Episode six.",1.2)});
+  [["Sofi","Lulu's old flame. Professional heartbreaker.","Hi, Lulu. Miss me? 😘","#ff4d94","#8e2de2"],["Diva","Soomy's friend. Just a friend. 😅","I'm only here to support Soomy. As a friend.","#8e2de2","#3a7bd5"],["Diana","Professional drama starter.","I'm not here to cause trouble. I'm here to cause drama. 😇","#ff7a59","#7a0f3a"],["Lucy","Just here for fun. 😊","Hi! I'm Lucy. I love couples. Especially… new ones. 😊","#7fd1ff","#14b8b0"]].forEach(function(x,i){SG(24+i*3,function(){card3("NEW ISLANDER 💥",x[0],x[1],x[2],x[3],x[4])})});
+  seqG(36,["Lulu","Sofi","Soomy"],EBG,"AWKWARD 😬",[["Lulu","Sofi?! What are YOU doing here?! 😳","😘",1.7],["Sofi","Hi, Lulu. Miss me? 😘","😳"],["Soomy","…Who is that? 😶","😬"],["Lulu","Nobody! Just an old friend. 😬","😶",1.7]],2.4);
+  seqG(45.6,["Diva","Soomy","Diana","Lulu"],EBG,"MESSY 💀",[["Diva","Soomy!! I came to support you! 💕","😅"],["Soomy","…That's very kind, Diva. 😅","💕"],["Diana","Ooh. Soomy and Lulu keep looking at each other. 👀","😳"],["Lulu","We do not! 😳","😏",1.7]],2.4);
+  seqG(55.2,["Lucy","Puddy","Faye","Diana"],EBG,"NEW IN TOWN 👀",[["Lucy","You two are SO cute. How long have you been talking? 😊","🥰"],["Puddy","A few weeks! We're taking it slow. 🥰","😊"],["Lucy","Slow? Interesting… 😊","🤨"],["Faye","Is she being weird, or is it me? 🤨","😈"],["Diana","Oh, she's definitely weird. I love it. 😈","😏"]],2.4);
+  seqG(67.2,HH,HBG,"YOUR HOSTS",[["Lola","Now, meet our third host.","😮",1.35],["Bree","She runs the secret challenges.","🤫",1.1]],2.4);
+  SG(72,function(){card3("SECRET HOST 🤫","Yuna","Secret challenges. Secret plans.","Surprise! Nobody knows when I'll strike. 😈","#2b0a2e","#8a0f3a")});
+  seqG(78,["Yuna","Lola","Bree"],DRG,"SECRET CHALLENGES 🤫",[["Yuna","Every day, I pick islanders for a secret challenge. 🤫","😮",1.5],["Lola","And nobody else will know.","😳",1.35],["Yuna","Exactly. Messy, isn't it? 😏","😈",1.5]],2.4);
+  seqG(85.2,["Yuna","Rie","Kim"],DRG,"SECRET CHALLENGE 🤫",[["Yuna","Secret challenge! Whisper who you'd send home. 🤫","🤔",1.5],["Rie","…Lucy. Something's off about her. 🤨","😏"],["Kim","…Lucy too. She's too nice. 😶","😏"],["Yuna","Hmm. Not who I wanted… 😏","😬",1.5]],2.4);
+  [["Diva","I'm secretly in love with Soomy. Shh. 🤫"],["Lucy","I'm here to break up Faye and Puddy. 💔"],["Sofi","I'm here to win Lulu back. 😘"],["Diana","I'm here for the tea. ☕"]].forEach(function(c,i){SG(94.8+i*3,function(){solo(c[0],DRG,"DIARY ROOM 🎥",c[1])})});
+  seqG(106.8,HH,HBG,"THE VOTE 🗳️",[["Lola","Time for the vote. Who leaves the island? 🗳️","😮",1.35],["Bree","Yuna has the results. 📜","😈",1.1]],2.4);
+  seqG(111.6,["Yuna","Talisa","Rie","Lulu"],EBG,"THE RESULTS 📜",[["Yuna","The islander leaving the island is… Talisa. 📜","😈",1.5],["Talisa","WHAT?! That many people voted for me?!","😱"],["Rie","Wait. I voted for Lucy. 🤨","🤨"],["Lulu","Talisa, no! Don't leave! 😭","😭",1.7],["Yuna","Rules are rules. Goodbye, Talisa. 😈","😈",1.5]],2.4);
+  SG(123.6,function(){slam2("Talisa has left the island…","#7a0f3a")});
+  SG(125.4,function(){solo("Yuna",DRG,"DIARY ROOM 🎥","Nobody voted for Talisa. So I helped the numbers. 😈")});
+  SG(128.4,function(){slam2("Next time…","#12041f")});
+  SG(130.2,function(){ttl("Episode 7 · The Recount",1)});
+}
+function play11(){
+  boot("EPISODE 7",function(s){return{calm:s<8||s>=134,lull:(s>=8&&s<16)||(s>=60&&s<72),beat:(s>=16&&s<60)||(s>=96&&s<118),heart:(s>=72&&s<96)||(s>=118&&s<131),lead:(s>=24&&s<60)||(s>=100&&s<118)}},127.4,131.4,138);
+  SG(0,function(){recap("Four new islanders. A secret host.","And Talisa was voted off… allegedly.")});
+  seqG(8,HH,HBG,"YOUR HOSTS",[["Lola","Welcome back! The villa is a mess. 🌴","😂",1.35],["Bree","Sofi wants Lulu. Diva loves Soomy.","😏",1.1],["Lola","Lucy is up to something. Diana is stirring.","👀",1.35],["Bree","And someone… did not play fair. 🗳️","😈",1.1]],2);
+  SG(16,function(){ttl("Episode 7 · The Recount");spk("Lulu Island. Episode seven.",1.2)});
+  seqG(24,["Sofi","Lulu","Soomy","Diana"],EBG,"MESSY 💀",[["Sofi","Lulu, let's talk. Alone. 😘","😬"],["Lulu","Sofi, no. We're done. 😬","😘",1.7],["Diana","Ooh, Soomy is watching. 👀","😶"],["Soomy","I'm… just stretching. 😶","😏"]],2.4);
+  seqG(33.6,["Diva","Soomy","Diana","Lulu"],EBG,"MESSY 💀",[["Diva","Soomy, I made you a bracelet. 💕","😅"],["Soomy","Diva… that's sweet. But… 😅","💕"],["Diana","Diva, why are you blushing? Tell Soomy. 😈","😳"]],2.4);
+  seqG(40.8,["Lucy","Puddy","Faye","Diana"],EBG,"TROUBLE IN PARADISE 💔",[["Lucy","Puddy, can I borrow you for a sec? 😊","😕"],["Faye","Oh… okay? 😕","😊"],["Diana","Lucy's been talking to Puddy a LOT. 👀","😏"],["Puddy","Lucy is just being nice! 😅","🤨"]],2.4);
+  seqG(50.4,["Rie","Kim","Lulu","Fefe"],DRG,"SOMETHING'S OFF 🕵️",[["Rie","Something's off. I voted for Lucy. 🤨","🤨"],["Kim","I voted for Lucy too!","😱"],["Fefe","Me too!! 🙋","😱"],["Lulu","So how did Talisa get all the votes?! 😱","🤔",1.7]],2.4);
+  SG(60,function(){solo("Talisa",DRG,"TALISA, ALONE 🌊","Fine. I'll watch from the shore. …Observing. 👀")});
+  [["Diana","I'm going to find out who rigged it. For the drama. 😈"],["Lucy","Faye and Puddy are SO close to breaking up. Almost! 💔"],["Diva","Why does Soomy keep looking at Lulu? 😟"]].forEach(function(c,i){SG(63+i*3,function(){solo(c[0],DRG,"DIARY ROOM 🎥",c[1])})});
+  seqG(72,HH,HBG,"THE RECOUNT 🗳️",[["Bree","We checked the voting records. 📜","😮",1.1],["Lola","Something doesn't add up.","😳",1.35]],2.4);
+  seqG(76.8,["Bree","Lola","Yuna"],EBG,"EXPOSED 🗳️",[["Bree","The numbers were changed. Yuna… the vote was rigged. 📜","😱",1.1],["Yuna","What?! No! That's not… I was… 😳","😬",1.5],["Lola","We have the footage, Yuna. 🎥","😈",1.35],["Yuna","Okay! I wanted Talisa gone! 😭","😭",1.5]],2.4);
+  seqG(86.4,["Bree","Yuna","Lulu"],EBG,"ONE MORE THING 👀",[["Bree","And the ‘island will be mine’ note?","🤨",1.1],["Yuna","…Also me. For fun. 😬","😳",1.5]],2.4);
+  seqG(91.2,["Lola","Yuna"],HBG,"PUNISHMENT TIME",[["Lola","Yuna must announce every meal… in an opera voice. 🎭","😂",1.35],["Yuna","I hate it here. 🎭","😩",1.5]],2.4);
+  seqG(96,["Talisa","Kim","Lulu","Rie"],MBG,"TALISA IS BACK 🎉",[["Talisa","I'm back. Miss me? 😏","😍"],["Rie","We missed you! 🥹","😏"],["Lulu","Welcome back, Talisa! Group hug! 🤗","🥰",1.7],["Kim","I swear I voted for you to stay. 😅","😂"]],2.4);
+  seqG(105.6,["Diva","Soomy","Lulu"],EBG,"CONFESSION 💗",[["Diva","Soomy… I need to tell you something. 💕","😬"],["Soomy","Diva, wait—","😳"],["Lulu","…Oh no. 😬","😳",1.7],["Diva","I'm in love with you! 💗","😳"],["Soomy","Diva… I'm so sorry. There's someone else. 😔","😢"]],2.4);
+  seqG(117.6,["Puddy","Lucy","Faye"],DRG,"BUSTED 💔",[["Puddy","Lucy, I'm with Faye. Please stop. 😤","😬"],["Lucy","Fine! I came here to break you up! 😭","😱"],["Faye","…WHAT?! 😱","😭"]],2.4);
+  seqG(124.8,HH,HBG,"YOUR HOSTS",[["Lola","What a mess.","😂",1.35],["Bree","And it's not over. 💀","😈",1.1]],2.4);
+  SG(129.6,function(){slam2("Next time…","#3a0a1f")});
+  SG(131.4,function(){ttl("Episode 8 · Coming Soon",1)});
 }
 intro();
 </script>
